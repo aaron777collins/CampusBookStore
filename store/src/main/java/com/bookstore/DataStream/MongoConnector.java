@@ -1,4 +1,4 @@
-package com.bookstore;
+package com.bookstore.DataStream;
 
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
