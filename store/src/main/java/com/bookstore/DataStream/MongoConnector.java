@@ -29,6 +29,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 
 public class MongoConnector {
@@ -62,10 +63,20 @@ public class MongoConnector {
     }
 
     // Returns the class type and returns true on success and false on failure
-    public static <T> List<T> GetClassResults(T inputType, String collectionName) {
+    public static <T> List<T> GetClassResults(Class<T> inputType, String collectionName) {
+
+        T newInputType;
+        try {
+            newInputType = inputType.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
 
         return getDatabaseWithCodecAsFunctionWithParam(DB_NAME,
-                inputType,
+                newInputType,
                 (Function<DataWithDB<T>, List<T>>) (DataWithDB<T> dataWithDB) -> {
                     List<T> results = new ArrayList<T>();
                     try {
@@ -81,7 +92,7 @@ public class MongoConnector {
     }
 
     // Returns the class type and returns true on success and false on failure
-    public static <T> List<T> GetClassResultsWithFilter(T inputType, Bson bson, String collectionName) {
+    private static <T> List<T> GetClassResultsWithFilter(T inputType, Bson bson, String collectionName) {
 
         return getDatabaseWithCodecAsFunctionWithParam2(DB_NAME,
                 inputType,
@@ -172,7 +183,7 @@ public class MongoConnector {
         orders.add(new Order("accountID2", "OrderID2", null));
         WeeklyOrder order = new WeeklyOrder(orders, null);
         MongoConnector.InsertClass(order, MongoConnector.WEEKLY_ORDERS_COLLECTION_NAME);
-        System.out.println(MongoConnector.GetClassResults(new WeeklyOrder(), WEEKLY_ORDERS_COLLECTION_NAME));
+        System.out.println(MongoConnector.GetClassResults(WeeklyOrder.class, WEEKLY_ORDERS_COLLECTION_NAME));
     }
 
 }
