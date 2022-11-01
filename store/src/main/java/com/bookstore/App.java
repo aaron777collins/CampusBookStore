@@ -1,6 +1,7 @@
 package com.bookstore;
 
 import com.bookstore.DataStream.MongoConnector;
+import com.bookstore.Models.ScheduleMaker;
 
 /**
  * Hello world!
@@ -17,5 +18,6 @@ public final class App {
      */
     public static void main(String[] args) {
         new App();
+        new ScheduleMaker();
     }
 }
