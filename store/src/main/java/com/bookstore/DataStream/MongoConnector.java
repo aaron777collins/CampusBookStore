@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
+import org.bson.Document;
 // import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -94,11 +95,21 @@ public class MongoConnector {
     }
 
     // Returns the class type and returns true on success and false on failure
-    private static <T> List<T> GetClassResultsWithFilter(T inputType, Bson bson, String collectionName) {
+    public static <T> List<T> GetClassResultsWithFilter(Class<T> inputType, Bson filter, String collectionName) {
+
+        T newInputType;
+        try {
+            newInputType = inputType.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+                | NoSuchMethodException | SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
 
         return getDatabaseWithCodecAsFunctionWithParam2(DB_NAME,
-                inputType,
-                bson,
+                newInputType,
+                filter,
                 (Function<Data2WithDB<T, Bson>, List<T>>) (Data2WithDB<T, Bson> data2WithDB) -> {
                     List<T> results = new ArrayList<T>();
                     try {
@@ -121,6 +132,38 @@ public class MongoConnector {
                 (Function<DataWithDB<T>, Boolean>) (DataWithDB<T> dataWithDB) -> {
                     try {
                         dataWithDB.database.getCollection(collectionName, dataWithDB.classType).insertOne((dataWithDB.input));
+                        return true;
+                    } catch (MongoException me) {
+                        System.err.println("An error occurred while attempting to run a command: " + me);
+                        return false;
+                    }
+                });
+    }
+
+    // Inserts the class type and returns true on success and false on failure
+    public static <T> Boolean InsertManyClass(List<T> input, String collectionName) {
+
+        return getDatabaseWithCodecAsFunctionWithParam(DB_NAME,
+                input,
+                (Function<DataWithDB<List<T>>, Boolean>) (DataWithDB<List<T>> dataWithDB) -> {
+                    try {
+                        dataWithDB.database.getCollection(collectionName, dataWithDB.classType).insertMany((List<? extends List<T>>) dataWithDB.input);
+                        return true;
+                    } catch (MongoException me) {
+                        System.err.println("An error occurred while attempting to run a command: " + me);
+                        return false;
+                    }
+                });
+    }
+
+    // Inserts the class type and returns true on success and false on failure
+    public static <T> Boolean RemoveMany(Bson input, String collectionName) {
+
+        return getDatabaseWithCodecAsFunctionWithParam(DB_NAME,
+                input,
+                (Function<DataWithDB<Bson>, Boolean>) (DataWithDB<Bson> dataWithDB) -> {
+                    try {
+                        dataWithDB.database.getCollection(collectionName, dataWithDB.classType).deleteMany(dataWithDB.input);
                         return true;
                     } catch (MongoException me) {
                         System.err.println("An error occurred while attempting to run a command: " + me);
