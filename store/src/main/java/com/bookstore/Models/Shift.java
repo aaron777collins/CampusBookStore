@@ -1,9 +1,14 @@
 package com.bookstore.Models;
 
+import java.util.Date;
 
 public class Shift{
-    int start;
-    int end;
+    @Override
+    public String toString() {
+        return "Shift [start=" + start + ", end=" + end + "]";
+    }
+    Date start;
+    Date end;
 
 
     /**
