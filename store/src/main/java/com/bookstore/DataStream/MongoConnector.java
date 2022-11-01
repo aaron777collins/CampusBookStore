@@ -34,7 +34,6 @@ public class MongoConnector {
     fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
     public static final String DB_NAME = "BookStore";
-    public static final String WEEKLY_ORDERS_COLLECTION_NAME = "WeeklyOrders";
 
     private static String URI = "mongodb://localhost:27017";
 
@@ -221,14 +220,6 @@ public class MongoConnector {
             System.err.println("An error occurred while attempting to run a command: " + me);
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        List<Order> orders = new ArrayList<Order>();
-        orders.add(new Order("accountID2", "OrderID2", null));
-        WeeklyOrder order = new WeeklyOrder(orders, null);
-        MongoConnector.InsertClass(order, MongoConnector.WEEKLY_ORDERS_COLLECTION_NAME);
-        System.out.println(MongoConnector.GetClassResults(WeeklyOrder.class, WEEKLY_ORDERS_COLLECTION_NAME));
     }
 
 }
