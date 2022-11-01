@@ -4,6 +4,11 @@ public class Account {
     public String accountID;
     public String firstName;
     public String lastName;
+
+    public Account() {
+
+    }
+
     /**
      * @param accountID The account ID
      * @param firstName The first name of the account holder
@@ -56,6 +61,15 @@ public class Account {
         } else if (!lastName.equals(other.lastName))
             return false;
         return true;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+
+    @Override
+    public String toString() {
+        return "Account [accountID=" + accountID + ", firstName=" + firstName + ", lastName=" + lastName + "]";
     }
 
 }

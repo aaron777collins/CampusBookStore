@@ -6,6 +6,11 @@ public class Order {
     public String accountID;
     public String orderID;
     public List<Item> items;
+
+    public Order() {
+
+    }
+
     /**
      * @param accountID The account of the user
      * @param orderID The order of the user
@@ -59,5 +64,15 @@ public class Order {
             return false;
         return true;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+
+    @Override
+    public String toString() {
+        return "Order [accountID=" + accountID + ", orderID=" + orderID + ", items=" + items + "]";
+    }
+
 
 }

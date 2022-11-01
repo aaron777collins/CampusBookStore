@@ -5,6 +5,11 @@ public class Item {
     public float price;
     public String itemID;
     public ItemType itemType;
+
+    public Item() {
+
+    }
+
     /**
      * @param name The name of the item
      * @param price The price of the item
@@ -60,4 +65,14 @@ public class Item {
             return false;
         return true;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+
+    @Override
+    public String toString() {
+        return "Item [name=" + name + ", price=" + price + ", itemID=" + itemID + ", itemType=" + itemType + "]";
+    }
+
 }
