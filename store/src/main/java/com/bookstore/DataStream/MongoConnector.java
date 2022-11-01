@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
-import org.bson.Document;
 // import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -19,26 +18,17 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
-
-import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 
 public class MongoConnector {
 
-    // static CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true)
-    //         .register("com.bookstore.Models.WeeklyOrder").build();
-    // static CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(),
-    //         fromProviders(pojoCodecProvider));
-
+    //Makes sure that we can use classes in our models folder or wherever as long as it has an empty constructor with public variables (or it would need getters/setters)
     static CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(),
     fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
@@ -59,6 +49,18 @@ public class MongoConnector {
                 System.err.println("An error occurred while attempting to run a command: " + me);
             }
             return connectionWorks;
+        });
+    }
+
+    public static boolean DropCollection(String collection) {
+        return getDatabaseWithCodecAsFunction(DB_NAME, (MongoDatabase database) -> {
+            try {
+                database.getCollection(collection).drop();
+                return true;
+            } catch (MongoException me) {
+                System.err.println("An error occurred while attempting to run a command: " + me);
+                return false;
+            }
         });
     }
 
