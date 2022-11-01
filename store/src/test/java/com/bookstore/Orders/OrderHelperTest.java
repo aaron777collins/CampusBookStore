@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import com.bookstore.Models.Item;
@@ -34,12 +33,6 @@ public class OrderHelperTest {
 
         assertNotEquals(orderID3, orderID4);
 
-    }
-
-    private Order makeOrderTest() {
-        List<Item> items = new ArrayList<Item>();
-        items.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER));
-        return OrderHelper.makeOrder("test", items);
     }
 }
 
