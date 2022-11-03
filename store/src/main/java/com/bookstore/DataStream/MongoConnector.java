@@ -8,13 +8,8 @@ import java.util.function.Supplier;
 
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
-import org.bson.Document;
-// import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import com.bookstore.Models.Order;
-import com.bookstore.Models.WeeklyOrder;
-// import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

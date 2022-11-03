@@ -1,15 +1,12 @@
 package com.bookstore.Models;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
-
-import org.bson.codecs.pojo.annotations.BsonCreator;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 
 public class WeeklyOrder {
 
     public List<Order> orders;
-    public Date sendDate;
+    public Calendar sendDate;
 
     public WeeklyOrder() {
     }
@@ -19,7 +16,7 @@ public class WeeklyOrder {
      * @param orders
      * @param sendDate
      */
-    public WeeklyOrder(List<Order> orders, Date sendDate) {
+    public WeeklyOrder(List<Order> orders, Calendar sendDate) {
         this.orders = orders;
         this.sendDate = sendDate;
     }
