@@ -14,23 +14,45 @@ public class WeeklyOrdersManager {
 
     public static final String WEEKLY_ORDERS_COLLECTION_NAME = "WeeklyOrders";
 
-    public static boolean insertOrderInWeeklyOrder(Order order) {
+    public static boolean insertOrderInWeeklyOrder(Order order, Calendar sendDate) {
 
-        Calendar firstDayOfWeek = CalendarHelper.getFirstDayOfWeek();
-        List<WeeklyOrder> weeklyOrders = MongoConnector.GetClassResultsWithFilter(WeeklyOrder.class, eq("sendDate", firstDayOfWeek), WEEKLY_ORDERS_COLLECTION_NAME);
+        WeeklyOrder currentweek = getWeeklyOrder(sendDate);
+
+        currentweek.orders.add(order);
+        return MongoConnector.RemoveMany(eq("sendDate", sendDate.getTime()), WEEKLY_ORDERS_COLLECTION_NAME)
+        && MongoConnector.InsertClass(currentweek, WEEKLY_ORDERS_COLLECTION_NAME);
+
+    }
+    public static boolean removeOrderInWeeklyOrder(Order order, Calendar sendDate) {
+
+        WeeklyOrder currentweek = getWeeklyOrder(sendDate);
+
+        currentweek.orders.remove(order);
+
+        return MongoConnector.RemoveMany(eq("sendDate", sendDate.getTime()), WEEKLY_ORDERS_COLLECTION_NAME)
+        && MongoConnector.InsertClass(currentweek, WEEKLY_ORDERS_COLLECTION_NAME);
+
+    }
+
+    public static WeeklyOrder getWeeklyOrder(Calendar sendDate) {
+
+        List<WeeklyOrder> weeklyOrders =  MongoConnector.GetClassResultsWithFilter(WeeklyOrder.class, eq("sendDate", sendDate.getTime()), WEEKLY_ORDERS_COLLECTION_NAME);
 
         WeeklyOrder currentweek;
 
         if (weeklyOrders.size() == 0) {
-            currentweek = new WeeklyOrder(new ArrayList<Order>(), firstDayOfWeek);
+            // Order doesn't exist so we make one and insert it
+            currentweek = new WeeklyOrder(new ArrayList<Order>(), sendDate);
+            if(!(MongoConnector.InsertClass(currentweek, WEEKLY_ORDERS_COLLECTION_NAME))) {
+                // if it cannot insert new week
+                System.err.println("Could not insert new weekly order!");
+            }
         } else {
             currentweek = weeklyOrders.get(0);
         }
 
-        currentweek.orders.add(order);
-        return MongoConnector.RemoveMany(eq("sendDate", firstDayOfWeek), WEEKLY_ORDERS_COLLECTION_NAME)
-        && MongoConnector.InsertClass(currentweek, WEEKLY_ORDERS_COLLECTION_NAME);
 
+        return currentweek;
     }
 
 }

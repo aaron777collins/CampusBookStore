@@ -1,25 +1,27 @@
 package com.bookstore.Models;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class WeeklyOrder {
 
     public List<Order> orders;
-    public Calendar sendDate;
+    public Date sendDate;
 
     public WeeklyOrder() {
     }
 
 
     /**
-     * @param orders
-     * @param sendDate
+     * @param orders The list of orders
+     * @param sendDate The sendDate as a Calendar
      */
     public WeeklyOrder(List<Order> orders, Calendar sendDate) {
         this.orders = orders;
-        this.sendDate = sendDate;
+        this.sendDate = sendDate.getTime();
     }
+
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */
