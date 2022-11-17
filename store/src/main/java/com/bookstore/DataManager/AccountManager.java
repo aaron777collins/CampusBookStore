@@ -1,5 +1,6 @@
-package com.bookstore.Accounts;
+package com.bookstore.DataManager;
 
+import com.bookstore.Accounts.AccountHelper;
 import com.bookstore.DataStream.MongoConnector;
 import com.bookstore.Models.Account;
 import static com.mongodb.client.model.Filters.eq;
@@ -49,6 +50,17 @@ public class AccountManager {
 
 
         return currentAccount;
+    }
+
+    public static Account getAccount(String accountID) {
+        List<Account> accounts =  MongoConnector.GetClassResultsWithFilter(Account.class, eq("accountID", accountID), ACCOUNTS_COLLECTION_NAME);
+
+        if (accounts.size() == 0) {
+            return null;
+        } else {
+            return accounts.get(0);
+        }
+
     }
 
 }

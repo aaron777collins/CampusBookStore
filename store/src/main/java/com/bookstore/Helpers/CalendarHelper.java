@@ -10,6 +10,10 @@ public class CalendarHelper {
     }
     public static Calendar getFirstDayOfWeek(Calendar calendar) {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         return calendar;
     }
     public static Calendar toCalendar(Date date){
