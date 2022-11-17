@@ -34,7 +34,7 @@ public class AccountManager {
 
         List<Account> accounts =  MongoConnector.GetClassResultsWithFilter(Account.class, and(eq("firstName", firstName), eq("lastName", lastName)), ACCOUNTS_COLLECTION_NAME);
 
-        Account currentAccount;
+        Account currentAccount = null;
 
         if (accounts.size() == 0) {
             // Order doesn't exist so we make one and insert it
