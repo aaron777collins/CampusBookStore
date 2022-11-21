@@ -98,7 +98,7 @@ public class WeeklyOrdersGUI {
 
     public WeeklyOrdersGUI() {
         JFrame frame = new JFrame("Weekly Orders");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(1200, 600));
 
         // Makes the table selectable, but NOT Editable
@@ -119,6 +119,7 @@ public class WeeklyOrdersGUI {
         panel.add(scrollPane, BorderLayout.CENTER);
         frame.getContentPane().add(panel);
         // frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 

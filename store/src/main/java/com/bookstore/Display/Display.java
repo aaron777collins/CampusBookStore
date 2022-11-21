@@ -2,6 +2,9 @@ package com.bookstore.Display;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import com.bookstore.GUI.WeeklyOrdersGUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,7 +100,7 @@ public class Display {
         button6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new WeeklyOrdersGUI();
             }
         });
 
@@ -118,8 +121,8 @@ public class Display {
         // adding title to content pane and setting the window to be visible
         mainDisplay.getContentPane().add(title, BorderLayout.NORTH);
         mainDisplay.setPreferredSize(new Dimension(1280, 720));
-        mainDisplay.setLocationRelativeTo(null);
         mainDisplay.pack();
+        mainDisplay.setLocationRelativeTo(null);
         mainDisplay.setVisible(true);
     }
 
