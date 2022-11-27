@@ -54,11 +54,11 @@ public class WeeklyOrdersPanel extends JPanel{
                 Calendar firstDayOfWeek = CalendarHelper.getFirstDayOfWeek();
 
                 // insert our test classes
-                System.out.println(WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder1, firstDayOfWeek));
-                System.out.println(WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder2, firstDayOfWeek));
-                System.out.println(WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder3, firstDayOfWeek));
-                System.out.println(WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder4, firstDayOfWeek));
-                System.out.println(WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder5, firstDayOfWeek));
+                WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder1, firstDayOfWeek);
+                WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder2, firstDayOfWeek);
+                WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder3, firstDayOfWeek);
+                WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder4, firstDayOfWeek);
+                WeeklyOrdersManager.insertOrderInWeeklyOrder(testOrder5, firstDayOfWeek);
 
                 WeeklyOrder data = getWeeklyData();
 
