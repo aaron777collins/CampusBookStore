@@ -4,6 +4,7 @@
  */
 package com.bookstore.NewGUI;
 
+import com.bookstore.NewGUI.Panels.WeeklyOrders.WeeklyOrdersPanelV2;
 import com.bookstore.NewGUI.Panels.WeeklyOrdersPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -98,7 +99,7 @@ public class MainDisplay extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.setMinimumSize(new java.awt.Dimension(623, 280));
         jPanel3.setPreferredSize(new java.awt.Dimension(152, 350));
-        jPanel3.setLayout(new java.awt.FlowLayout(1, 5, 20));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 20));
 
         jButton1.setText("View Stock");
         jButton1.setPreferredSize(new java.awt.Dimension(135, 35));
@@ -217,7 +218,8 @@ public class MainDisplay extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        this.dynamicPanel = new WeeklyOrdersPanel(jPanel2);
+//        this.dynamicPanel = new WeeklyOrdersPanel(jPanel2);
+        this.dynamicPanel = new WeeklyOrdersPanelV2();
         jPanel2.removeAll();
         jPanel2.add(this.dynamicPanel);
         this.revalidate();
