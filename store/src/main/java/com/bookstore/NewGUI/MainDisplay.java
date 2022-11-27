@@ -16,9 +16,9 @@ import javax.swing.JPanel;
  * @author aaron
  */
 public class MainDisplay extends javax.swing.JFrame {
-    
+
     JPanel dynamicPanel;
-    
+
     /**
      * Creates new form MainDisplay
      */
@@ -27,7 +27,7 @@ public class MainDisplay extends javax.swing.JFrame {
         this.buttons = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
         addButtonListeners();
     }
-    
+
     private void addButtonListeners() {
         for (JButton button : this.buttons) {
             button.setBackground(new Color(255, 255, 255));
@@ -231,7 +231,7 @@ public class MainDisplay extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -263,7 +263,7 @@ public class MainDisplay extends javax.swing.JFrame {
     }
 
     private JButton[] buttons;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
