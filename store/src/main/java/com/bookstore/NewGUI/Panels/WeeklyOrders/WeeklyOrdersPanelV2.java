@@ -11,6 +11,9 @@ import com.bookstore.Models.Account;
 import com.bookstore.Models.Item;
 import com.bookstore.Models.Order;
 import com.bookstore.Models.WeeklyOrder;
+import com.bookstore.NewGUI.ButtonHelper.ButtonHelper;
+import com.bookstore.NewGUI.MainDisplay;
+import com.bookstore.NewGUI.Panels.AddOrder.AddOrderPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,42 +32,6 @@ import javax.swing.event.ListSelectionListener;
  * @author aaron
  */
 public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
-    
-    private void addButtonListeners() {
-        for (JButton button : this.buttons) {
-            button.setBackground(new Color(255, 255, 255));
-            button.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(167, 161, 179));
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(255, 255, 255));
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(71, 1, 194));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(255, 255, 255));
-                }
-            });
-        }
-    }
     
     private WeeklyOrder getWeeklyData() {
         return WeeklyOrdersManager.getWeeklyOrder(CalendarHelper.getFirstDayOfWeek());
@@ -86,7 +53,7 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
 
     private WeeklyOrder[] getRandomData() {
                 // setup objects
-                List<Item> items1 = new ArrayList<Item>();
+                List<Item> items1 = new ArrayList<>();
                 items1.add(new Item());
                 Account accInit = AccountManager.getStoreAccount();
                 Order testOrder1 = new Order(accInit.accountID, "ordertest1", items1);
@@ -112,7 +79,7 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
                 WeeklyOrdersManager.removeOrderInWeeklyOrder(testOrder4, firstDayOfWeek);
                 WeeklyOrdersManager.removeOrderInWeeklyOrder(testOrder5, firstDayOfWeek);
                 
-                List<Item> items2 = new ArrayList<Item>();
+                List<Item> items2 = new ArrayList<>();
                 items2.add(new Item());
                 Order testOrder6 = new Order(accInit.accountID, "ordertest6", items2);
                 Order testOrder7 = new Order(accInit.accountID, "ordertest7", items2);
@@ -177,9 +144,13 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
         return dataArr;
     }
     
-    private void setEnabledEditAndDeleteButtons(boolean state) {
+    private void setViewButton(boolean state) {
         jButton2.setEnabled(state);
+    }
+    
+    private void setEnabledEditAndDeleteButtons(boolean state) {
         jButton3.setEnabled(state);
+        jButton4.setEnabled(state);
     }
     
     private void addTableSelectionListener() {
@@ -189,6 +160,7 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
                 if (e.getValueIsAdjusting()) {
                     //System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
                     Date selectedDate = (Date)(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                    setViewButton(true);
                     setEnabledEditAndDeleteButtons(selectedDate.compareTo(CalendarHelper.getFirstDayOfWeek().getTime()) >= 0);
                 }
             }
@@ -205,10 +177,12 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
     /**
      * Creates new form WeeklyOrdersPanelV2
      */
-    public WeeklyOrdersPanelV2() {
+    public WeeklyOrdersPanelV2(MainDisplay display) {
+        this.display = display;
         initComponents();
-        this.buttons = new JButton[]{jButton1, jButton2, jButton3};
-        addButtonListeners();
+        this.buttons = new JButton[]{jButton1, jButton2, jButton3, jButton4};
+        ButtonHelper.addButtonHighlights(buttons);
+        setViewButton(false);
         setEnabledEditAndDeleteButtons(false);
         addTableSelectionListener();
         sortTableRows();
@@ -235,10 +209,12 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(33, 33, 33));
         setForeground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(820, 500));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(850, 500));
         setLayout(new java.awt.BorderLayout());
 
         jScrollPane1.setBackground(new java.awt.Color(33, 33, 33));
@@ -274,11 +250,11 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1);
 
-        jButton2.setText("Edit Selected Order");
+        jButton2.setText("View Selected Order");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel1.add(jButton2);
 
-        jButton3.setText("Delete Order");
+        jButton3.setText("Edit Selected Order");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,22 +263,36 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
         });
         jPanel1.add(jButton3);
 
+        jButton4.setText("Delete Order");
+        jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
+
         add(jPanel1, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.display.setNewPanel(new AddOrderPanel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -310,6 +300,7 @@ public class WeeklyOrdersPanelV2 extends javax.swing.JPanel {
 
     private JButton[] buttons;
     private WeeklyOrder[] data;
+    private MainDisplay display;
 
     
 }

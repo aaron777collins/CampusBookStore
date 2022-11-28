@@ -4,6 +4,7 @@ import com.bookstore.DataStream.MongoConnector;
 import com.bookstore.Items.ItemHelper;
 import com.bookstore.Models.Account;
 import com.bookstore.Models.Item;
+import com.bookstore.Models.ItemInfo;
 import com.bookstore.Models.ItemType;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -20,7 +21,7 @@ public class ItemManager {
     public static boolean removeItem(String name, ItemType itemType) {
 
 
-        Item item = getItem(name, 0, itemType);
+        Item item = getItem(name, 0, itemType, null);
 
         if (item == null) {
             return false;
@@ -30,7 +31,7 @@ public class ItemManager {
 
     }
 
-    public static Item getItem(String name, float price, ItemType itemType) {
+    public static Item getItem(String name, float price, ItemType itemType, List<ItemInfo> itemInfos) {
 
         List<Item> Items =  MongoConnector.GetClassResultsWithFilter(Item.class, and(eq("name", name), eq("itemType", itemType)), ITEMS_COLLECTION_NAME);
 
@@ -38,7 +39,7 @@ public class ItemManager {
 
         if (Items.size() == 0) {
             // Order doesn't exist so we make one and insert it
-            currentItem = ItemHelper.makeItem(name, price, itemType);
+            currentItem = ItemHelper.makeItem(name, price, itemType, itemInfos);
             if(!(MongoConnector.InsertClass(currentItem, ITEMS_COLLECTION_NAME))) {
                 // if it cannot insert new week
                 System.err.println("Could not insert new Item!");

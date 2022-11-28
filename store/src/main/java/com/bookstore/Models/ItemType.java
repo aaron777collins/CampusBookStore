@@ -1,5 +1,5 @@
 package com.bookstore.Models;
 
 public enum ItemType {
-    BOOK, OTHER
+    BOOK, CLOTHING, OTHER
 }

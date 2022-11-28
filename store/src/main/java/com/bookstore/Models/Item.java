@@ -1,10 +1,13 @@
 package com.bookstore.Models;
 
+import java.util.List;
+
 public class Item {
     public String name;
     public float price;
     public String itemID;
     public ItemType itemType;
+    public List<ItemInfo> itemInfos;
 
     public Item() {
 
@@ -15,12 +18,14 @@ public class Item {
      * @param price The price of the item
      * @param itemID The ID of the item
      * @param itemType The type of the item
+     * @param itemInfos The list of itemInfos (property, value)
      */
-    public Item(String name, float price, String itemID, ItemType itemType) {
+    public Item(String name, float price, String itemID, ItemType itemType, List<ItemInfo> itemInfos) {
         this.name = name;
         this.price = price;
         this.itemID = itemID;
         this.itemType = itemType;
+        this.itemInfos = itemInfos;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
@@ -72,7 +77,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item [name=" + name + ", price=" + price + ", itemID=" + itemID + ", itemType=" + itemType + "]";
+        return "Item [name=" + name + ", price=" + price + ", itemID=" + itemID + ", itemType=" + itemType + "itemInfos=" + itemInfos + "]";
     }
 
 }

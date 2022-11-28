@@ -4,11 +4,9 @@
  */
 package com.bookstore.NewGUI;
 
+import com.bookstore.NewGUI.ButtonHelper.ButtonHelper;
+import com.bookstore.NewGUI.Panels.AddOrder.AddItem.AddItemPanel;
 import com.bookstore.NewGUI.Panels.WeeklyOrders.WeeklyOrdersPanelV2;
-import com.bookstore.NewGUI.Panels.WeeklyOrdersPanel;
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class MainDisplay extends javax.swing.JFrame {
 
-    JPanel dynamicPanel;
+    public JPanel dynamicPanel;
 
     /**
      * Creates new form MainDisplay
@@ -26,43 +24,7 @@ public class MainDisplay extends javax.swing.JFrame {
     public MainDisplay() {
         initComponents();
         this.buttons = new JButton[]{jButton1, jButton2, jButton3, jButton4, jButton5, jButton6};
-        addButtonListeners();
-    }
-
-    private void addButtonListeners() {
-        for (JButton button : this.buttons) {
-            button.setBackground(new Color(255, 255, 255));
-            button.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(167, 161, 179));
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    // new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(255, 255, 255));
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(71, 1, 194));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                    button.setBackground(new Color(255, 255, 255));
-                }
-            });
-        }
+        ButtonHelper.addButtonHighlights(buttons);
     }
 
     /**
@@ -190,9 +152,7 @@ public class MainDisplay extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jPanel2.removeAll();
-        this.revalidate();
-        this.repaint();
+        setNewPanel(new AddItemPanel());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -218,14 +178,18 @@ public class MainDisplay extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-//        this.dynamicPanel = new WeeklyOrdersPanel(jPanel2);
-        this.dynamicPanel = new WeeklyOrdersPanelV2();
+        setNewPanel(new WeeklyOrdersPanelV2(this));
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    public void setNewPanel(JPanel panel) {
+        this.dynamicPanel = panel;
         jPanel2.removeAll();
         jPanel2.add(this.dynamicPanel);
         this.revalidate();
         this.repaint();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -274,7 +238,7 @@ public class MainDisplay extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

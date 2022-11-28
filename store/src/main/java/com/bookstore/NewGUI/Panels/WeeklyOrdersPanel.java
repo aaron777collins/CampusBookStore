@@ -1,5 +1,7 @@
 package com.bookstore.NewGUI.Panels;
 
+// DEPRECIATED: Use the WeeklyOrdersPanelV2 instead.
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -96,6 +98,7 @@ public class WeeklyOrdersPanel extends JPanel{
         return dataArr;
     }
 
+    // DEPRECIATED: Use the WeeklyOrdersPanelV2 instead.
     public WeeklyOrdersPanel(JPanel parent) {
 
         // Makes the table selectable, but NOT Editable

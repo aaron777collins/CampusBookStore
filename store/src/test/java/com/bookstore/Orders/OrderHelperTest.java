@@ -44,7 +44,7 @@ class MakeOrderTester implements Runnable{
     @Override
     public void run() {
         List<Item> items = new ArrayList<Item>();
-        items.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER));
+        items.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER, null));
         Order order = OrderHelper.makeOrder("test", items);
         orderID1 = order.orderID;
         try {
@@ -54,7 +54,7 @@ class MakeOrderTester implements Runnable{
             e.printStackTrace();
         }
         List<Item> items2 = new ArrayList<Item>();
-        items2.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER));
+        items2.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER, null));
         Order order2 = OrderHelper.makeOrder("test", items);
         orderID1 = order2.orderID;
     }
@@ -76,11 +76,11 @@ class MakeOrderTesterSameTime implements Runnable{
     @Override
     public void run() {
         List<Item> items = new ArrayList<Item>();
-        items.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER));
+        items.add(new Item("testItem", 22.99f, "1234", ItemType.OTHER, null));
         Order order = OrderHelper.makeOrder("test", items);
         orderID1 = order.orderID;
         List<Item> items2 = new ArrayList<Item>();
-        items2.add(new Item("testItem2", 22.99f, "1234", ItemType.OTHER));
+        items2.add(new Item("testItem2", 22.99f, "1234", ItemType.OTHER, null));
         Order order2 = OrderHelper.makeOrder("test", items);
         orderID1 = order2.orderID;
     }

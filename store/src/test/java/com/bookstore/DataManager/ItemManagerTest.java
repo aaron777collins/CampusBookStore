@@ -4,18 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import com.bookstore.DataManager.ItemManager;
 import com.bookstore.Models.Item;
+import com.bookstore.Models.ItemInfo;
 import com.bookstore.Models.ItemType;
 
 public class ItemManagerTest {
     @Test
     void testItems() {
 
-        Item testItem1 = ItemManager.getItem("test1", 22.99f, ItemType.BOOK);
-        Item testItem2 = ItemManager.getItem("test2", 23.99f, ItemType.OTHER);
+        ArrayList<ItemInfo> itemInfosAuthor = new ArrayList<ItemInfo>();
+        itemInfosAuthor.add(new ItemInfo("author", "John Smith"));
+
+        Item testItem1 = ItemManager.getItem("test1", 22.99f, ItemType.BOOK, itemInfosAuthor);
+        Item testItem2 = ItemManager.getItem("test2", 23.99f, ItemType.OTHER, null);
 
         assertNotEquals(testItem1.name, testItem2.name);
         assertNotEquals(testItem1.price, testItem2.price);
