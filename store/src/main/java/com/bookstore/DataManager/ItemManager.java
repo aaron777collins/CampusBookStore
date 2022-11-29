@@ -16,7 +16,7 @@ import static com.mongodb.client.model.Filters.and;
 
 public class ItemManager {
 
-    public static final String ITEMS_COLLECTION_NAME = "Accounts";
+    public static final String ITEMS_COLLECTION_NAME = "Items";
 
     public static boolean removeItem(String name, ItemType itemType) {
 
