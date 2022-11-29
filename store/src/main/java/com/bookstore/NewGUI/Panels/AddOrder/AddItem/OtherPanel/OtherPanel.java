@@ -31,11 +31,11 @@ public class OtherPanel extends javax.swing.JPanel {
         NamePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        NameField = new javax.swing.JTextField();
         PricePanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        PriceField = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 220), new java.awt.Dimension(0, 220), new java.awt.Dimension(32767, 220));
 
         setBackground(new java.awt.Color(33, 33, 33));
@@ -61,16 +61,16 @@ public class OtherPanel extends javax.swing.JPanel {
         jLabel1.setText("Name:");
         jPanel2.add(jLabel1);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setToolTipText("Enter Book Name");
-        jTextField1.setMinimumSize(new java.awt.Dimension(200, 28));
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 28));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NameField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        NameField.setToolTipText("Enter Book Name");
+        NameField.setMinimumSize(new java.awt.Dimension(200, 28));
+        NameField.setPreferredSize(new java.awt.Dimension(200, 28));
+        NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NameFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
+        jPanel2.add(NameField);
 
         NamePanel.add(jPanel2);
 
@@ -93,16 +93,16 @@ public class OtherPanel extends javax.swing.JPanel {
         jLabel2.setText("Price:");
         jPanel4.add(jLabel2);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField2.setToolTipText("Enter Book Name");
-        jTextField2.setMinimumSize(new java.awt.Dimension(200, 28));
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 28));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        PriceField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        PriceField.setToolTipText("Enter Book Name");
+        PriceField.setMinimumSize(new java.awt.Dimension(200, 28));
+        PriceField.setPreferredSize(new java.awt.Dimension(200, 28));
+        PriceField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                PriceFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2);
+        jPanel4.add(PriceField);
 
         PricePanel.add(jPanel4);
 
@@ -110,24 +110,24 @@ public class OtherPanel extends javax.swing.JPanel {
         add(filler1);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NameFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void PriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_PriceFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField NameField;
     private javax.swing.JPanel NamePanel;
+    public javax.swing.JTextField PriceField;
     private javax.swing.JPanel PricePanel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

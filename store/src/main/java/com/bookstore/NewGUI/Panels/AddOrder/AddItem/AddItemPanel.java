@@ -4,6 +4,10 @@
  */
 package com.bookstore.NewGUI.Panels.AddOrder.AddItem;
 
+import com.bookstore.DataManager.ItemManager;
+import com.bookstore.Items.ItemHelper;
+import com.bookstore.Models.Item;
+import com.bookstore.Models.ItemInfo;
 import com.bookstore.Models.ItemType;
 import com.bookstore.NewGUI.ButtonHelper.ButtonHelper;
 import com.bookstore.NewGUI.ComboBoxHelper.ComboBoxRenderer;
@@ -16,10 +20,13 @@ import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
@@ -75,6 +82,46 @@ public class AddItemPanel extends javax.swing.JPanel {
                 updateScrollPanel();
             }
         });
+    }
+    
+    private ItemType getItemType(String input) {
+        for (ItemType itemType : ItemType.values()) {
+            if (itemType.toString().equals(input)) {
+                return itemType;
+            }
+        }
+        return ItemType.OTHER;
+    }
+    
+    private Item collectData() throws NumberFormatException {
+        
+        ItemType itemType = getItemType(this.jComboBox1.getSelectedItem().toString());
+        
+        String name = "";
+        float price = 0.0f;
+        List<ItemInfo> itemInfos = new ArrayList<>();
+        
+        if (itemType == ItemType.BOOK) {
+            BookPanel panel = (BookPanel) dynamicPanel;
+            name = panel.BookNameField.getText();
+            price = Float.parseFloat(panel.PriceField.getText());
+            itemInfos.add(new ItemInfo("author", panel.AuthorField.getText()));
+            itemInfos.add(new ItemInfo("ISBN", panel.ISBNField.getText()));
+        } else if (itemType == ItemType.CLOTHING) {
+            ClothingPanel panel = (ClothingPanel) dynamicPanel;
+            name = panel.NameField.getText();
+            price = Float.parseFloat(panel.PriceField.getText());
+            itemInfos.add(new ItemInfo("sizes", panel.SizesField.getSelectedValuesList().toString()));
+            itemInfos.add(new ItemInfo("colors", panel.ColorsField.getSelectedValuesList().toString()));
+        } else {
+            OtherPanel panel = (OtherPanel) dynamicPanel;
+            name = panel.NameField.getText();
+            price = Float.parseFloat(panel.PriceField.getText());
+
+        }
+        
+        return ItemHelper.makeItem(name, price, itemType, itemInfos);
+
     }
     
     /**
@@ -204,7 +251,14 @@ public class AddItemPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.display.setNewPanel(new AddItemPanel(this.display));
+        try {
+            Item newItem = collectData();
+            ItemManager.getItem(newItem.name, newItem.price, newItem.itemType, newItem.itemInfos);
+            this.display.setNewPanel(new AddItemPanel(this.display));
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a proper price!", "Format Error", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

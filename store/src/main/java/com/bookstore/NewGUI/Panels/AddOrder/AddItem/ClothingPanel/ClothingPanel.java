@@ -25,8 +25,8 @@ public class ClothingPanel extends javax.swing.JPanel {
     }
     
     private void setScrollPaneHighlights() {
-        jList1.setSelectionBackground(new Color(71,1,194));
-        jList2.setSelectionBackground(new Color(71,1,194));
+        SizesField.setSelectionBackground(new Color(71,1,194));
+        ColorsField.setSelectionBackground(new Color(71,1,194));
     }
 
     /**
@@ -41,21 +41,21 @@ public class ClothingPanel extends javax.swing.JPanel {
         NamePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        NameField = new javax.swing.JTextField();
         PricePanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        PriceField = new javax.swing.JTextField();
         SizesPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        SizesField = new javax.swing.JList<>();
         ColorsPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ColorsField = new javax.swing.JList<>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
 
         setBackground(new java.awt.Color(33, 33, 33));
@@ -81,16 +81,16 @@ public class ClothingPanel extends javax.swing.JPanel {
         jLabel1.setText("Name:");
         jPanel2.add(jLabel1);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField1.setToolTipText("Enter Book Name");
-        jTextField1.setMinimumSize(new java.awt.Dimension(200, 28));
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 28));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        NameField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        NameField.setToolTipText("Enter Book Name");
+        NameField.setMinimumSize(new java.awt.Dimension(200, 28));
+        NameField.setPreferredSize(new java.awt.Dimension(200, 28));
+        NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                NameFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
+        jPanel2.add(NameField);
 
         NamePanel.add(jPanel2);
 
@@ -113,16 +113,16 @@ public class ClothingPanel extends javax.swing.JPanel {
         jLabel2.setText("Price:");
         jPanel4.add(jLabel2);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField2.setToolTipText("Enter Book Name");
-        jTextField2.setMinimumSize(new java.awt.Dimension(200, 28));
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 28));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        PriceField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        PriceField.setToolTipText("Enter Book Name");
+        PriceField.setMinimumSize(new java.awt.Dimension(200, 28));
+        PriceField.setPreferredSize(new java.awt.Dimension(200, 28));
+        PriceField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                PriceFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2);
+        jPanel4.add(PriceField);
 
         PricePanel.add(jPanel4);
 
@@ -150,13 +150,13 @@ public class ClothingPanel extends javax.swing.JPanel {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        SizesField.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setToolTipText("");
-        jScrollPane1.setViewportView(jList1);
+        SizesField.setToolTipText("");
+        jScrollPane1.setViewportView(SizesField);
 
         jPanel6.add(jScrollPane1);
 
@@ -187,12 +187,12 @@ public class ClothingPanel extends javax.swing.JPanel {
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        ColorsField.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "RED", "BLACK", "GREY", "WHITE" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(ColorsField);
 
         jPanel8.add(jScrollPane2);
 
@@ -202,34 +202,34 @@ public class ClothingPanel extends javax.swing.JPanel {
         add(filler1);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_NameFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void PriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_PriceFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JList<String> ColorsField;
     private javax.swing.JPanel ColorsPanel;
+    public javax.swing.JTextField NameField;
     private javax.swing.JPanel NamePanel;
+    public javax.swing.JTextField PriceField;
     private javax.swing.JPanel PricePanel;
+    public javax.swing.JList<String> SizesField;
     private javax.swing.JPanel SizesPanel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
