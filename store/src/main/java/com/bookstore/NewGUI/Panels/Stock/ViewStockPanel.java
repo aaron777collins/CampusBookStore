@@ -136,6 +136,15 @@ public class ViewStockPanel extends javax.swing.JPanel {
         addTableSelectionListener();
         sortTableRows();
     }
+    
+    private ItemType getItemType(String input) {
+        for (ItemType itemType : ItemType.values()) {
+            if (itemType.toString().equals(input)) {
+                return itemType;
+            }
+        }
+        return ItemType.OTHER;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,6 +238,9 @@ public class ViewStockPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        ItemManager.removeItem(jTable1.getValueAt(selectedRow, 0).toString(), getItemType(jTable1.getValueAt(selectedRow, 3).toString()));
+        this.display.setNewPanel(new ViewStockPanel(this.display));
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
