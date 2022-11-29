@@ -6,6 +6,7 @@ package com.bookstore.NewGUI;
 
 import com.bookstore.NewGUI.ButtonHelper.ButtonHelper;
 import com.bookstore.NewGUI.Panels.AddOrder.AddItem.AddItemPanel;
+import com.bookstore.NewGUI.Panels.Stock.ViewStockPanel;
 import com.bookstore.NewGUI.Panels.WeeklyOrders.WeeklyOrdersPanelV2;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -145,14 +146,12 @@ public class MainDisplay extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jPanel2.removeAll();
-        this.revalidate();
-        this.repaint();
+        setNewPanel(new ViewStockPanel(this));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setNewPanel(new AddItemPanel());
+        setNewPanel(new AddItemPanel(this));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -179,7 +178,6 @@ public class MainDisplay extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         setNewPanel(new WeeklyOrdersPanelV2(this));
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public void setNewPanel(JPanel panel) {

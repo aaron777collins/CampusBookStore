@@ -80,7 +80,8 @@ public class AddItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddItem
      */
-    public AddItemPanel() {
+    public AddItemPanel(MainDisplay display) {
+        this.display = display;
         initComponents();
         this.buttons = new JButton[] {jButton1};
         ButtonHelper.addButtonHighlights(buttons);
@@ -192,10 +193,19 @@ public class AddItemPanel extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(100, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(100, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton1);
 
         add(jPanel4, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.display.setNewPanel(new AddItemPanel(this.display));
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,5 +222,6 @@ public class AddItemPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private JButton[] buttons;
+    private MainDisplay display;
 
 }
