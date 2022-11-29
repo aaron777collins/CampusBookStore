@@ -205,14 +205,14 @@ public class ChangeAvailabilityPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton4;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel totalWeekHours;
+    public javax.swing.JLabel totalWeekHours;
     // End of variables declaration//GEN-END:variables
 
     private JButton[] buttons;
