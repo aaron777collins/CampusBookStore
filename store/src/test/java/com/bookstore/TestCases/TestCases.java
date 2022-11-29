@@ -199,4 +199,27 @@ public class TestCases {
        * Expected output: Column values will be re-ordered alphabetically by column name field
        * Post condition: Mongodatabase is available, user is logged in, rows are ordered by column name field
        */
+    
+    /*Test Case Sort alphabetically table 2
+       * Precondition: MongoDatabase is available, user is logged in, table has rows
+       * Input: Select column title three times
+       * Expected output: Column values will be re-ordered alphabetically by column name field
+       * Post condition: Mongodatabase is available, user is logged in, rows are ordered by column name field
+       */
+    
+        /*
+    Test case sort reverse-alphabetically table 1
+    * Precondition: Mongodatabase is available, user is logged in, table has rows
+    * Input: select column title twice
+    * Expected output: Column values will be re-ordered reverse alphabetically by column name field
+    * Post condition: Mongodatabase is available, user is logged in, rows are ordered by reverse column name field
+    */
+    
+    /*
+    Test case sort reverse-alphabetically table 2
+    * Precondition: Mongodatabase is available, user is logged in, table has rows
+    * Input: select column title four times
+    * Expected output: Column values will be re-ordered reverse alphabetically by column name field
+    * Post condition: Mongodatabase is available, user is logged in, rows are ordered by reverse column name field
+    */
 }
